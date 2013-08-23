@@ -3,6 +3,7 @@
 #include <string>
 #include <opencv\cv.h>
 #include <opencv\highgui.h>
+#include <Windows.h>
 
 using namespace std;
 using namespace cv;
@@ -22,6 +23,13 @@ class CSTest
 	int Cb_MAX;
 	int Cr_MIN;
 	int Cr_MAX;
+
+	int dilation_elem;
+	int dilation_size;
+	int erosion_elem;
+	int erosion_size;
+	int erosion_type;
+	int dilation_type;
 
 	static const int FRAME_WIDTH = 640;
 	static const int FRAME_HEIGHT = 480;
@@ -48,6 +56,14 @@ public:
 
 	void CreateYCbCrTrackbars();
 
+	void CreateErodeTrackbars();
+
+	void CreateDilateTrackbars();
+
+	void Erosion(Mat& input, Mat& output, int erosion_type, int erosion_size);
+
+	void Dilation(Mat& input, Mat& output, int dilation_type, int dilation_size);
+
 	int StartCapture();
 
 	void StopCapture();
@@ -61,5 +77,8 @@ private:
 	Mat yCbCrThresholdImage;
 	Mat combinedImage;
 	Mat yCbCrImage;
-
+	Mat hsv_erosion_img;
+	Mat yCbCr_erosion_img;
+	Mat hsv_dilation_img;
+	Mat yCbCr_dilation_img;
 };
